@@ -1,0 +1,21 @@
+services:
+  codcheck:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codcheck
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:4185:4185"
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4185
+      CODCHECK_DATA_DIR: /app/data
+      BASE_PATH: ${BASE_PATH:-}
+      APP_ORIGIN: ${APP_ORIGIN:-}
+    volumes:
+      - codcheck_data:/app/data
+
+volumes:
+  codcheck_data:

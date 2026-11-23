@@ -1,0 +1,14 @@
+[Unit]
+Description=CODCheck Courier Settlement Auditor & RTO Unit Economics Server
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/codcheck
+EnvironmentFile=/etc/codcheck/.env
+ExecStart=/usr/bin/node --no-warnings /opt/codcheck/server/index.mjs
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
